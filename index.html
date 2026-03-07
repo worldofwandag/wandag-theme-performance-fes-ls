@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Variables & Theming Laboratory 🦇💀</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+  <nav>
+    <div class="nav-content">
+      <div class="logo">🦇 Theming Laboratory 💀</div>
+      <div class="nav-links">
+        <a href="#variables">CSS Variables</a>
+        <a href="#theming">Theming</a>
+        <a href="#dark-mode">Dark Mode</a>
+        <a href="#performance">Performance</a>
+      </div>
+      <button class="theme-toggle" id="globalThemeToggle">☀️ Light Mode</button>
+    </div>
+  </nav>
+
+  <!-- Floating decorations -->
+  <div class="floating-decor">
+    <span class="float-item" style="left: 5%; animation-delay: 0s;">🕷️</span>
+    <span class="float-item" style="left: 15%; animation-delay: 1s;">🦇</span>
+    <span class="float-item" style="left: 75%; animation-delay: 0.5s;">🕸️</span>
+    <span class="float-item" style="left: 92%; animation-delay: 1.5s;">🎃</span>
+  </div>
+
+  <main>
+    <!-- SECTION 1: CSS Variables Intro -->
+    <section class="section" id="variables">
+      <h2 class="section-title">🧪 CSS Variables (Custom Properties)</h2>
+      <p class="section-subtitle">Store reusable values in your laboratory and change them in one place!</p>
+
+      <div class="slide-demo-card">
+        <h3 class="slide-title">What are CSS Variables?</h3>
+        <div class="slide-content">
+          <div class="slide-info">
+            <h4>CSS Variables allow you to:</h4>
+            <ul>
+              <li>🧪 Store values (colors, sizes, fonts) in one place</li>
+              <li>🔮 Reuse them throughout your CSS</li>
+              <li>⚗️ Change the whole site by editing one line</li>
+              <li>🎭 Create themes easily</li>
+            </ul>
+          </div>
+          <div class="slide-code">
+            <pre><span class="comment">/* Define variables in :root */</span>
+<span class="selector">:root</span> {
+  <span class="property">--primary-color</span>: <span class="value">#6b4c9a</span>;
+  <span class="property">--text-color</span>: <span class="value">#1a1a2e</span>;
+  <span class="property">--spacing</span>: <span class="value">16px</span>;
+}
+
+<span class="comment">/* Use them with var() */</span>
+<span class="selector">.button</span> {
+  <span class="property">background</span>: <span class="value">var(--primary-color)</span>;
+  <span class="property">color</span>: <span class="value">var(--text-color)</span>;
+  <span class="property">padding</span>: <span class="value">var(--spacing)</span>;
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Variable Editor -->
+      <div class="two-column">
+        <div class="controls">
+          <div class="controls-header">
+            <span>⚙️ Variable Editor</span>
+            <button class="reset-btn" id="resetVariables">🔄 Reset</button>
+          </div>
+
+          <div class="control-group">
+            <label>--primary-color:</label>
+            <div class="color-input-row">
+              <input type="color" id="primaryColor" value="#6b4c9a">
+              <span class="color-value" id="primaryColorValue">#6b4c9a</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>--secondary-color:</label>
+            <div class="color-input-row">
+              <input type="color" id="secondaryColor" value="#c9a227">
+              <span class="color-value" id="secondaryColorValue">#c9a227</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>--background-color:</label>
+            <div class="color-input-row">
+              <input type="color" id="bgColor" value="#1a1a2e">
+              <span class="color-value" id="bgColorValue">#1a1a2e</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>--text-color:</label>
+            <div class="color-input-row">
+              <input type="color" id="textColor" value="#e8e8e8">
+              <span class="color-value" id="textColorValue">#e8e8e8</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>--border-radius: <span class="value-display" id="radiusValue">12px</span></label>
+            <input type="range" id="borderRadius" min="0" max="50" value="12">
+          </div>
+
+          <div class="control-group">
+            <label>--spacing: <span class="value-display" id="spacingValue">16px</span></label>
+            <input type="range" id="spacing" min="4" max="40" value="16">
+          </div>
+
+          <div class="code-display">
+            <span class="selector">:root</span> <span class="punctuation">{</span><br>
+            &nbsp;&nbsp;<span class="property">--primary-color</span><span class="punctuation">:</span> <span class="value" id="codePrimary">#6b4c9a</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--secondary-color</span><span class="punctuation">:</span> <span class="value" id="codeSecondary">#c9a227</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--background-color</span><span class="punctuation">:</span> <span class="value" id="codeBg">#1a1a2e</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--text-color</span><span class="punctuation">:</span> <span class="value" id="codeText">#e8e8e8</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--border-radius</span><span class="punctuation">:</span> <span class="value" id="codeRadius">12px</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--spacing</span><span class="punctuation">:</span> <span class="value" id="codeSpacing">16px</span><span class="punctuation">;</span><br>
+            <span class="punctuation">}</span>
+          </div>
+        </div>
+
+        <div class="demo-container variable-demo" id="variableDemo">
+          <div class="demo-card-grid">
+            <div class="var-demo-card">
+              <span class="card-icon">💀</span>
+              <h4>Skull Card</h4>
+              <p>This card uses CSS variables!</p>
+              <button class="var-demo-btn primary">Primary Button</button>
+            </div>
+            <div class="var-demo-card">
+              <span class="card-icon">🎃</span>
+              <h4>Pumpkin Card</h4>
+              <p>Change the values on the left!</p>
+              <button class="var-demo-btn secondary">Secondary Button</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Theming -->
+    <section class="section" id="theming">
+      <h2 class="section-title">🎭 Creating Themes</h2>
+      <p class="section-subtitle">Use variables to create consistent, swappable themes!</p>
+
+      <div class="slide-demo-card">
+        <h3 class="slide-title">Why Variables Matter for Themes</h3>
+        <div class="slide-content three-col">
+          <div class="benefit-card">
+            <span class="benefit-icon">🔮</span>
+            <h4>Easy Changes</h4>
+            <p>Change 1 variable, update 100 elements</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">📜</span>
+            <h4>Less Code</h4>
+            <p>No more repeating the same values</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">🧹</span>
+            <h4>Cleaner CSS</h4>
+            <p>Easier to read and maintain</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme Presets -->
+      <div class="two-column">
+        <div class="controls">
+          <div class="controls-header">
+            <span>🎨 Theme Presets</span>
+          </div>
+
+          <p class="control-description">Click a theme to see how CSS variables make theme switching instant!</p>
+
+          <div class="theme-preset-grid">
+            <button class="theme-preset active" data-theme="gothic">
+              <span class="preset-colors">
+                <span style="background: #6b4c9a;"></span>
+                <span style="background: #c9a227;"></span>
+                <span style="background: #1a1a2e;"></span>
+              </span>
+              🦇 Gothic
+            </button>
+            <button class="theme-preset" data-theme="beetlejuice">
+              <span class="preset-colors">
+                <span style="background: #4a7c59;"></span>
+                <span style="background: #9b4dca;"></span>
+                <span style="background: #0d0d0d;"></span>
+              </span>
+              🪲 Beetlejuice
+            </button>
+            <button class="theme-preset" data-theme="corpse">
+              <span class="preset-colors">
+                <span style="background: #5c8a8a;"></span>
+                <span style="background: #8b7d9b;"></span>
+                <span style="background: #1a2e2e;"></span>
+              </span>
+              💀 Corpse Bride
+            </button>
+            <button class="theme-preset" data-theme="pumpkin">
+              <span class="preset-colors">
+                <span style="background: #e07020;"></span>
+                <span style="background: #8b4513;"></span>
+                <span style="background: #1a1510;"></span>
+              </span>
+              🎃 Pumpkin King
+            </button>
+            <button class="theme-preset" data-theme="nightmare">
+              <span class="preset-colors">
+                <span style="background: #e8e8e8;"></span>
+                <span style="background: #4a4a4a;"></span>
+                <span style="background: #0a0a0a;"></span>
+              </span>
+              🌙 Nightmare
+            </button>
+            <button class="theme-preset" data-theme="wonderland">
+              <span class="preset-colors">
+                <span style="background: #b8336a;"></span>
+                <span style="background: #00a896;"></span>
+                <span style="background: #2b2d42;"></span>
+              </span>
+              🃏 Wonderland
+            </button>
+          </div>
+
+          <div class="code-display" id="themeCode">
+            <span class="selector">:root</span> <span class="punctuation">{</span><br>
+            &nbsp;&nbsp;<span class="property">--primary-color</span><span class="punctuation">:</span> <span class="value">#6b4c9a</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--secondary-color</span><span class="punctuation">:</span> <span class="value">#c9a227</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--background-color</span><span class="punctuation">:</span> <span class="value">#1a1a2e</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--text-color</span><span class="punctuation">:</span> <span class="value">#e8e8e8</span><span class="punctuation">;</span><br>
+            <span class="punctuation">}</span>
+          </div>
+        </div>
+
+        <div class="demo-container theme-demo" id="themeDemo">
+          <div class="theme-demo-site">
+            <header class="mini-header">
+              <span class="mini-logo">🦇 Spooky Co.</span>
+              <nav class="mini-nav">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+              </nav>
+            </header>
+            <div class="mini-hero">
+              <h3>Welcome to the Darkness!</h3>
+              <p>This entire mini-site uses CSS variables.</p>
+              <button class="mini-btn primary">Get Started</button>
+              <button class="mini-btn secondary">Learn More</button>
+            </div>
+            <div class="mini-cards">
+              <div class="mini-card">
+                <span>💀</span>
+                <p>Feature One</p>
+              </div>
+              <div class="mini-card">
+                <span>🕷️</span>
+                <p>Feature Two</p>
+              </div>
+              <div class="mini-card">
+                <span>🦇</span>
+                <p>Feature Three</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Dark Mode -->
+    <section class="section" id="dark-mode">
+      <h2 class="section-title">🌙 Dark Mode</h2>
+      <p class="section-subtitle">Create light and dark themes by overriding variables!</p>
+
+      <div class="slide-demo-card">
+        <h3 class="slide-title">How Dark Mode Works</h3>
+        <div class="slide-content">
+          <div class="slide-info">
+            <h4>The Pattern:</h4>
+            <ol>
+              <li>Define default (light) variables in <code>:root</code></li>
+              <li>Create a <code>.dark-theme</code> class that overrides them</li>
+              <li>Toggle the class on <code>&lt;body&gt;</code> with JavaScript</li>
+            </ol>
+            <div class="tip-box">
+              🦇 <strong>Pro tip:</strong> You can also use <code>prefers-color-scheme</code> to auto-detect user preference!
+            </div>
+          </div>
+          <div class="slide-code">
+            <pre><span class="comment">/* Light mode (default) */</span>
+<span class="selector">:root</span> {
+  <span class="property">--background</span>: <span class="value">#f5f5f5</span>;
+  <span class="property">--text</span>: <span class="value">#1a1a1a</span>;
+}
+
+<span class="comment">/* Dark mode override */</span>
+<span class="selector">.dark-theme</span> {
+  <span class="property">--background</span>: <span class="value">#0d0d0d</span>;
+  <span class="property">--text</span>: <span class="value">#e8e8e8</span>;
+}
+
+<span class="comment">/* Elements use variables */</span>
+<span class="selector">body</span> {
+  <span class="property">background</span>: <span class="value">var(--background)</span>;
+  <span class="property">color</span>: <span class="value">var(--text)</span>;
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dark Mode Interactive Demo -->
+      <div class="two-column">
+        <div class="controls">
+          <div class="controls-header">
+            <span>🌓 Dark Mode Toggle</span>
+          </div>
+
+          <div class="mode-toggle-container">
+            <button class="mode-btn" data-mode="light">☀️ Light Mode</button>
+            <button class="mode-btn active" data-mode="dark">🌙 Dark Mode</button>
+          </div>
+
+          <div class="code-display" id="darkModeCode">
+            <span class="comment">/* Current mode: Dark */</span><br><br>
+            <span class="selector">.dark-theme</span> <span class="punctuation">{</span><br>
+            &nbsp;&nbsp;<span class="property">--bg-color</span><span class="punctuation">:</span> <span class="value">#0d0d0d</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--text-color</span><span class="punctuation">:</span> <span class="value">#e8e8e8</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--card-bg</span><span class="punctuation">:</span> <span class="value">#1a1a2e</span><span class="punctuation">;</span><br>
+            &nbsp;&nbsp;<span class="property">--border-color</span><span class="punctuation">:</span> <span class="value">#333</span><span class="punctuation">;</span><br>
+            <span class="punctuation">}</span>
+          </div>
+
+          <div class="code-display" style="margin-top: 15px;">
+            <span class="comment">/* JavaScript toggle */</span><br>
+            <span class="keyword">document</span>.<span class="property">body</span>.<span class="property">classList</span>.<span class="value">toggle</span>(<span class="string">'dark-theme'</span>);
+          </div>
+        </div>
+
+        <div class="demo-container dark-mode-demo" id="darkModeDemo">
+          <div class="dm-preview dark">
+            <div class="dm-header">
+              <span>🦇 SpookyApp</span>
+              <div class="dm-toggle-mini">🌙</div>
+            </div>
+            <div class="dm-content">
+              <h4>Dashboard</h4>
+              <div class="dm-cards">
+                <div class="dm-card">
+                  <span>📊</span>
+                  <p>Analytics</p>
+                </div>
+                <div class="dm-card">
+                  <span>👻</span>
+                  <p>Spirits</p>
+                </div>
+              </div>
+              <div class="dm-card wide">
+                <p>Welcome back from the other side! 🕷️</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Performance -->
+    <section class="section" id="performance">
+      <h2 class="section-title">⚡ CSS Performance</h2>
+      <p class="section-subtitle">Write faster, cleaner, more efficient CSS!</p>
+
+      <div class="slide-demo-card">
+        <h3 class="slide-title">Why Performance Matters</h3>
+        <div class="slide-content three-col">
+          <div class="benefit-card">
+            <span class="benefit-icon">🚀</span>
+            <h4>Faster Sites</h4>
+            <p>Better user experience, especially on mobile</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">🔋</span>
+            <h4>Less Work</h4>
+            <p>Browser doesn't have to work as hard</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">📱</span>
+            <h4>Mobile Friendly</h4>
+            <p>Crucial for slower devices</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bad vs Good Selectors -->
+      <div class="comparison-section">
+        <h3 class="comparison-title">🐌 Bad vs Good Selectors 🚀</h3>
+        
+        <div class="comparison-grid">
+          <div class="comparison-box bad">
+            <h4>❌ Bad (Deep Nesting)</h4>
+            <div class="code-display">
+              <span class="selector">body div section ul li a</span> <span class="punctuation">{</span><br>
+              &nbsp;&nbsp;<span class="property">color</span><span class="punctuation">:</span> <span class="value">red</span><span class="punctuation">;</span><br>
+              <span class="punctuation">}</span>
+            </div>
+            <ul class="reason-list">
+              <li>🐌 Slow to match</li>
+              <li>😵 Hard to read</li>
+              <li>🔗 Tightly coupled to HTML</li>
+              <li>😰 Breaks if HTML changes</li>
+            </ul>
+          </div>
+
+          <div class="comparison-box good">
+            <h4>✅ Good (Flat Class)</h4>
+            <div class="code-display">
+              <span class="selector">.nav-link</span> <span class="punctuation">{</span><br>
+              &nbsp;&nbsp;<span class="property">color</span><span class="punctuation">:</span> <span class="value">red</span><span class="punctuation">;</span><br>
+              <span class="punctuation">}</span>
+            </div>
+            <ul class="reason-list">
+              <li>🚀 Fast to match</li>
+              <li>👀 Easy to read</li>
+              <li>🔓 Flexible, reusable</li>
+              <li>💪 Robust to changes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRY Principle -->
+      <div class="comparison-section">
+        <h3 class="comparison-title">📜 DRY: Don't Repeat Yourself</h3>
+        
+        <div class="comparison-grid">
+          <div class="comparison-box bad">
+            <h4>❌ Repetitive</h4>
+            <div class="code-display">
+              <span class="selector">.card1</span> <span class="punctuation">{</span> <span class="property">background</span>: <span class="value">#1a1a2e</span>; <span class="punctuation">}</span><br>
+              <span class="selector">.card2</span> <span class="punctuation">{</span> <span class="property">background</span>: <span class="value">#1a1a2e</span>; <span class="punctuation">}</span><br>
+              <span class="selector">.card3</span> <span class="punctuation">{</span> <span class="property">background</span>: <span class="value">#1a1a2e</span>; <span class="punctuation">}</span><br>
+              <span class="selector">.card4</span> <span class="punctuation">{</span> <span class="property">background</span>: <span class="value">#1a1a2e</span>; <span class="punctuation">}</span><br>
+              <span class="selector">.card5</span> <span class="punctuation">{</span> <span class="property">background</span>: <span class="value">#1a1a2e</span>; <span class="punctuation">}</span>
+            </div>
+            <p class="comparison-note">😫 If you need to change the color, you edit 5 places!</p>
+          </div>
+
+          <div class="comparison-box good">
+            <h4>✅ Reusable</h4>
+            <div class="code-display">
+              <span class="selector">.card</span> <span class="punctuation">{</span><br>
+              &nbsp;&nbsp;<span class="property">background</span><span class="punctuation">:</span> <span class="value">var(--card-bg)</span><span class="punctuation">;</span><br>
+              <span class="punctuation">}</span>
+            </div>
+            <p class="comparison-note">🎉 One class, uses a variable. Change once, updates everywhere!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Best Practices Summary -->
+      <div class="slide-demo-card">
+        <h3 class="slide-title">✨ Best Practices Summary</h3>
+        <div class="best-practices-grid">
+          <div class="practice-item">
+            <span class="practice-icon">🎯</span>
+            <div>
+              <h4>Use flat selectors</h4>
+              <p>Prefer <code>.class</code> over deep nesting</p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="practice-icon">🔄</span>
+            <div>
+              <h4>Reuse classes</h4>
+              <p>Create utility classes you can combine</p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="practice-icon">🎨</span>
+            <div>
+              <h4>Use CSS variables</h4>
+              <p>For colors, spacing, and theme values</p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="practice-icon">📁</span>
+            <div>
+              <h4>Keep CSS organized</h4>
+              <p>Group related styles together</p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="practice-icon">🎬</span>
+            <div>
+              <h4>Animate wisely</h4>
+              <p>Prefer <code>transform</code> and <code>opacity</code></p>
+            </div>
+          </div>
+          <div class="practice-item">
+            <span class="practice-icon">🧹</span>
+            <div>
+              <h4>Remove unused CSS</h4>
+              <p>Less code = faster load times</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>🦇 CSS Variables & Theming Laboratory - Make your CSS delightfully dark! 💀</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
