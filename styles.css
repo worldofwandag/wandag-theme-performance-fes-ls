@@ -109,6 +109,11 @@ body.light-theme .control-description {
   color: #555;
 }
 
+body.light-theme .slide-info ul,
+body.light-theme .slide-info ol {
+  color: #444;
+}
+
 /* Navigation */
 nav {
   background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 100%);
